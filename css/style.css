@@ -319,8 +319,8 @@ ul { list-style: none; }
   position: absolute;
   inset: 0;
   background: linear-gradient(135deg,
-    rgba(10,22,40,0.62) 0%,
-    rgba(13,33,68,0.50) 100%);
+    rgba(10,22,40,0.42) 0%,
+    rgba(13,33,68,0.30) 100%);
 }
 .page-hero-pattern {
   position: absolute;
