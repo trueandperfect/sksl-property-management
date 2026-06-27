@@ -94,10 +94,9 @@ ul { list-style: none; }
   gap: 0.6rem;
 }
 .nav-logo img {
-  height: 48px;
+  height: 68px;
   width: auto;
   object-fit: contain;
-  /* Make logo visible on dark bg — white version via filter */
   filter: brightness(0) invert(1);
 }
 .nav-links {
@@ -154,9 +153,9 @@ ul { list-style: none; }
   position: absolute;
   inset: 0;
   background: linear-gradient(135deg,
-    rgba(10,22,40,0.92) 0%,
-    rgba(13,33,68,0.85) 40%,
-    rgba(26,58,107,0.7) 100%);
+    rgba(10,22,40,0.60) 0%,
+    rgba(13,33,68,0.50) 40%,
+    rgba(26,58,107,0.35) 100%);
 }
 .hero-pattern {
   position: absolute;
@@ -320,8 +319,8 @@ ul { list-style: none; }
   position: absolute;
   inset: 0;
   background: linear-gradient(135deg,
-    rgba(10,22,40,0.88) 0%,
-    rgba(13,33,68,0.75) 100%);
+    rgba(10,22,40,0.62) 0%,
+    rgba(13,33,68,0.50) 100%);
 }
 .page-hero-pattern {
   position: absolute;

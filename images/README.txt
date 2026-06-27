@@ -38,6 +38,10 @@ PRICING PAGE
 
 CONTACT / LISTINGS PAGE
   contact-hero.jpg    — Contact page hero (Int.-Img9-1024x682.jpg)
+  listings-hero.jpg   — Listings page hero (couple standing with realtor — needs upload)
+
+ABOUT PAGE (additional)
+  headshot.jpg        — Founder headshot for "Who We Are" section (needs upload)
 
 The site will display gracefully as a blue gradient placeholder 
 if any image is missing.
