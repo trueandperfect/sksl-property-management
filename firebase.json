@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "sksl-property-manage-uvwu",
     "public": ".",
     "ignore": [
       "firebase.json",
