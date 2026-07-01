@@ -3,6 +3,9 @@
     "site": "sksl-property-manage-uvwu",
     "public": ".",
     "cleanUrls": true,
+    "redirects": [
+      { "source": "/:page/", "destination": "/:page", "type": 301 }
+    ],
     "ignore": [
       "firebase.json",
       "**/.*",
