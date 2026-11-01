@@ -95,6 +95,56 @@ function initLazyImages() {
   }
 }
 
+/* ── Listing photo lightbox ─────────────────────────────── */
+function initLightbox() {
+  const box = document.getElementById('lightbox');
+  if (!box) return;
+  const img = box.querySelector('img');
+  const counter = box.querySelector('.lightbox-counter');
+  let photos = [], index = 0;
+
+  const show = i => {
+    index = (i + photos.length) % photos.length;
+    img.src = photos[index];
+    counter.textContent = `${index + 1} / ${photos.length}`;
+    new Image().src = photos[(index + 1) % photos.length];
+  };
+  const close = () => { box.hidden = true; document.body.style.overflow = ''; };
+
+  document.querySelectorAll('.listing').forEach(listing => {
+    const list = listing.dataset.photos.split(',');
+    listing.querySelectorAll('button[data-index]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        photos = list;
+        img.alt = listing.querySelector('.listing-address').textContent;
+        box.hidden = false;
+        document.body.style.overflow = 'hidden';
+        show(Number(btn.dataset.index));
+      });
+    });
+  });
+
+  box.querySelector('.lightbox-close').addEventListener('click', close);
+  box.querySelector('.lightbox-prev').addEventListener('click', () => show(index - 1));
+  box.querySelector('.lightbox-next').addEventListener('click', () => show(index + 1));
+  box.addEventListener('click', e => { if (e.target === box) close(); });
+  document.addEventListener('keydown', e => {
+    if (box.hidden) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') show(index - 1);
+    if (e.key === 'ArrowRight') show(index + 1);
+  });
+
+  let startX = null;
+  box.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+  box.addEventListener('touchend', e => {
+    if (startX === null) return;
+    const dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 40) show(index + (dx < 0 ? 1 : -1));
+    startX = null;
+  });
+}
+
 /* ── Hamburger X animation ──────────────────────────────── */
 const hamburgerStyle = document.createElement('style');
 hamburgerStyle.textContent = `
@@ -111,4 +161,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initNav();
   initSmoothScroll();
   initLazyImages();
+  initLightbox();
 });
