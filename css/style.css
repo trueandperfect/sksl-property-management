@@ -615,8 +615,11 @@ footer { background: var(--ink); padding: 4rem 2rem 2rem; color: rgba(255,255,25
 .listing-cover:hover img, .listing-thumbs button:hover img { transform: scale(1.04); }
 .listing-thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
 .listing-thumbs button { aspect-ratio: 4 / 3; overflow: hidden; }
-.listing-badge { position: absolute; top: 1rem; left: 1rem; background: var(--navy); color: #fff; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.35rem 0.8rem; border-radius: 20px; }
+.listing-badges { position: absolute; top: 1rem; left: 1rem; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.listing-badge { background: var(--navy); color: #fff; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.35rem 0.8rem; border-radius: 20px; }
 .listing-badge-rent { background: var(--blue); }
+.listing-badge-reduced { background: #B42318; }
+.listing-price-was { font-family: var(--sans); font-size: 1rem; font-weight: 400; color: var(--muted); margin-left: 0.4rem; }
 .listing-count { position: absolute; bottom: 1rem; right: 1rem; background: rgba(13,33,68,0.75); color: #fff; font-size: 0.75rem; font-weight: 500; padding: 0.3rem 0.7rem; border-radius: 4px; }
 .listing-body { padding: 2.25rem; display: flex; flex-direction: column; }
 .listing-price { font-family: var(--serif); font-size: 2rem; font-weight: 700; color: var(--blue); line-height: 1.1; }
