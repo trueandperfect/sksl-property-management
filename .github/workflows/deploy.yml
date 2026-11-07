@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy to GitHub Pages (live) and Firebase (backup)
 
 on:
   push:
@@ -38,3 +38,27 @@ jobs:
 
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  # Firebase Hosting kept up to date as a fallback host. Switching back
+  # only needs the DNS records pointed at Firebase again.
+  firebase-backup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools
+
+      - name: Deploy to Firebase Hosting
+        run: |
+          firebase deploy --only hosting --project sksl-property-manage-uvwu --token "$FIREBASE_TOKEN" 2>&1 | tee /tmp/deploy.log
+          exit_code=${PIPESTATUS[0]}
+          if [ $exit_code -ne 0 ]; then
+            if grep -q "current active version" /tmp/deploy.log; then
+              echo "No site changes — already up to date."
+            else
+              exit $exit_code
+            fi
+          fi
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
