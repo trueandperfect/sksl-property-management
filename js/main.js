@@ -111,7 +111,7 @@ function initLightbox() {
   };
   const close = () => { box.hidden = true; document.body.style.overflow = ''; };
 
-  document.querySelectorAll('.listing[data-photos]').forEach(listing => {
+  document.querySelectorAll('.listing').forEach(listing => {
     const list = listing.dataset.photos.split(',');
     listing.querySelectorAll('button[data-index]').forEach(btn => {
       btn.addEventListener('click', () => {
