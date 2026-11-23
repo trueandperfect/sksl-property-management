@@ -30,6 +30,23 @@ jobs:
           cp -r *.html robots.txt sitemap.xml CNAME css js images _site/
           touch _site/.nojekyll
 
+      # Pages serves /contact but 404s on /contact/. Firebase used to redirect
+      # the trailing-slash form, so give each page a /<page>/ stub that does.
+      - name: Trailing-slash redirects
+        run: |
+          for f in *.html; do
+            page="${f%.html}"
+            [ "$page" = index ] && continue
+            mkdir -p "_site/$page"
+            cat > "_site/$page/index.html" <<EOF
+          <!doctype html><html><head><meta charset="utf-8">
+          <link rel="canonical" href="https://www.skslpropertymanagement.com/$page">
+          <meta http-equiv="refresh" content="0; url=/$page">
+          <script>location.replace('/$page' + location.search + location.hash)</script>
+          </head><body><a href="/$page">Continue</a></body></html>
+          EOF
+          done
+
       - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
